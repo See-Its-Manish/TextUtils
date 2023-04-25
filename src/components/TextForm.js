@@ -28,7 +28,7 @@ export default function TextForm(props) {
         
         <>
             <div className="container">
-                <h1>{props.heading}</h1>
+                <h1 className = {`text-${ ((props.mode === 'light') ? 'dark' : 'light') }`}>{props.heading}</h1>
                 <div className="mb-3">
                     <textarea 
                         className="form-control" 
@@ -36,13 +36,17 @@ export default function TextForm(props) {
                         id="myBox" 
                         rows="8"
                         placeholder='Enter Text Here'
+                        style = {{
+                            backgroundColor: `${ ((props.mode === 'light') ? 'white' : '#202124') }`,
+                            color: `${ ((props.mode === 'light') ? 'black' : 'white') }`,
+                        }}
                     ></textarea>
                 </div>
                 <button className='btn btn-primary my-3 mx-2' onClick={handleUpClick}>Convert to Uppercase</button>
                 <button className='btn btn-primary my-3 mx-2' onClick={handleLowClick}>Convert to LowerCase</button>
                 <button className='btn btn-primary my-3 mx-2' onClick={handleClearClick}>Clear Text</button>
             </div>
-            <div className="container my-3">
+            <div className={`container my-3 text-${ ((props.mode === 'light') ? 'dark' : 'light') }`} >
                 <h1>Your text Summary</h1>
                 <p>{analyzeWords()} words, {text.length} characters</p>
                 <p>{0.008*analyzeWords()} Minutes read</p>
